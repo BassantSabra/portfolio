@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>:root{color-scheme:light}body{margin:0}</style>
+<title>Bassant Sabra Portfolio</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+/* Layout: left-aligned studio-style portfolio. Intro band, two full case studies with KPI strips, then a grid of the remaining projects. */
+:root {
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --fg: #12161c;
+  --muted: #5b6573;
+  --line: #dfe3e9;
+  --accent: #0b6e6e;
+  --accent-soft: #d9efee;
+  --warm: #c2562d;
+  --font-display: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1317; --surface: #171c22; --fg: #eef1f4; --muted: #9aa5b3; --line: #29313a;
+    --accent: #4fc3bd; --accent-soft: #15302f; --warm: #f08a5d; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1317; --surface: #171c22; --fg: #eef1f4; --muted: #9aa5b3; --line: #29313a;
+  --accent: #4fc3bd; --accent-soft: #15302f; --warm: #f08a5d; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 16px; line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0;
+}
+.wrap { max-width: 1080px; margin: 0 auto; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; line-height: 1.1; letter-spacing: -0.01em; }
+a { color: var(--accent); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+.label { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+
+header.top { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-block: 20px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+header.top .name { font-family: var(--font-display); font-weight: 600; }
+header.top nav { display: flex; gap: 20px; flex-wrap: wrap; font-size: 14px; }
+header.top nav a { color: var(--muted); text-decoration: none; }
+header.top nav a:hover { color: var(--fg); }
+
+.intro { padding-block: 72px 56px; display: grid; gap: 28px; }
+.intro h1 { font-size: clamp(2.4rem, 7vw, 4.4rem); max-width: 14ch; }
+.intro p { max-width: 58ch; color: var(--muted); font-size: 1.1rem; margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font-size: 13px; padding: 4px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); }
+.chip.on { background: var(--accent-soft); border-color: transparent; color: var(--accent); font-weight: 600; }
+
+section { padding-block: 56px; border-top: 1px solid var(--line); }
+.sec-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; }
+.sec-head h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); }
+
+.case { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+.case + .case { margin-top: 72px; padding-top: 56px; border-top: 1px dashed var(--line); }
+.case h3 { font-size: clamp(1.5rem, 3.4vw, 2rem); margin-block: 8px 12px; }
+.case .lede { color: var(--muted); margin: 0 0 20px; }
+.meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-bottom: 24px; }
+.kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; }
+.kpi b { display: block; font-family: var(--font-display); font-size: 1.5rem; font-variant-numeric: tabular-nums; }
+.kpi span { font-size: 12px; color: var(--muted); }
+.case h4 { margin: 24px 0 8px; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.case ul { margin: 0; padding-left: 1.1em; display: grid; gap: 8px; }
+.case li { max-width: 60ch; }
+.cover { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; position: sticky; top: 16px; }
+.cover svg { display: block; width: 100%; height: auto; }
+.cover figcaption { font-size: 12px; color: var(--muted); margin-top: 10px; }
+.cover { margin: 0; }
+.btn { display: inline-block; margin-top: 24px; padding: 10px 18px; border-radius: 8px; background: var(--fg); color: var(--bg); text-decoration: none; font-weight: 600; font-size: 14px; }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 20px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+.card .thumb { aspect-ratio: 16 / 10; max-width: 100%; background: var(--accent-soft); display: block; }
+.card .thumb svg { display: block; width: 100%; height: 100%; }
+.card .body { padding: 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.card h3 { font-size: 1.15rem; }
+.card p { margin: 0; color: var(--muted); font-size: 14px; }
+.card .foot { margin-top: auto; padding-top: 8px; display: flex; justify-content: space-between; gap: 8px; align-items: center; font-size: 13px; color: var(--muted); }
+.card a.view { font-weight: 600; font-size: 14px; }
+
+footer { border-top: 1px solid var(--line); padding-block: 40px 56px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: var(--muted); font-size: 14px; }
+
+@media (max-width: 800px) {
+  .case { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .cover { position: static; order: -1; }
+  .intro { padding-block: 48px 40px; }
+}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <span class="name">Bassant Sabra</span>
+    <nav aria-label="Sections">
+      <a href="#case-studies">Case studies</a>
+      <a href="#more-work">More work</a>
+      <a href="https://github.com/BassantSabra" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </header>
+
+  <div class="intro">
+    <span class="label">Data Analyst</span>
+    <h1>Dashboards that answer the business question.</h1>
+    <p>Six analysis projects across retail sales, logistics and customer orders, built with Excel, Power BI and SQL. Each one ends in a dashboard and a set of recommendations.</p>
+    <div class="chips" aria-label="Tools">
+      <span class="chip on">SQL</span><span class="chip on">Excel</span><span class="chip on">Power BI</span>
+      <span class="chip">DAX</span><span class="chip">Power Query</span><span class="chip">Pivot Tables</span><span class="chip">VBA</span>
+    </div>
+  </div>
+
+  <section id="case-studies">
+    <div class="sec-head"><h2>Case studies</h2><span class="label">2 featured projects</span></div>
+
+    <article class="case">
+      <div>
+        <span class="label">Retail sales · Excel</span>
+        <h3>Adidas Sales Analysis Dashboard</h3>
+        <p class="lede">An interactive Excel dashboard on Adidas US sales, covering customer behavior, regions, products and sales patterns, built to guide growth and expansion decisions.</p>
+        <div class="meta">
+          <span class="chip">Pivot Tables</span><span class="chip">INDEX / MATCH</span><span class="chip">IFS</span><span class="chip">VBA macros</span>
+        </div>
+        <div class="kpis">
+          <div class="kpi"><b>$120.2M</b><span>Total revenue</span></div>
+          <div class="kpi"><b>9,648</b><span>Transactions</span></div>
+          <div class="kpi"><b>2.5M</b><span>Units ordered</span></div>
+          <div class="kpi"><b>+30.8%</b><span>Revenue growth</span></div>
+        </div>
+        <h4>What the data showed</h4>
+        <ul>
+          <li><b>Seasonality.</b> Sales peaked in April 2020 ($3.2M) and July 2021 ($10.4M), which informs production and inventory planning.</li>
+          <li><b>Gender split.</b> Men (54% of revenue) lead in footwear; women (46%) lead in apparel. Promotions can be targeted by segment.</li>
+          <li><b>Region and channel.</b> The West is the top region and Online is the top channel, ahead of In-store and Outlet.</li>
+          <li><b>Weekday pattern.</b> Friday is the strongest day at $20M; Sunday and Monday are the weakest at $15–16M.</li>
+          <li><b>States.</b> New York, California, Florida and Texas drive about 26% of revenue, while many Midwest and Mountain states contribute far less.</li>
+        </ul>
+        <h4>Method</h4>
+        <ul>
+          <li>Kaggle Adidas sales dataset with transactions, revenue, quantity, demographics, channel, region and product category.</li>
+          <li>Pivot tables for aggregation, dynamic formulas for calculations, and VBA macros to reset filters.</li>
+        </ul>
+        <a class="btn" href="https://github.com/BassantSabra/Adidas-Sales-Analysis" target="_blank" rel="noopener">View on GitHub</a>
+      </div>
+      <figure class="cover" aria-label="Chart illustration">
+        <svg viewBox="0 0 400 260" role="img" aria-label="Bar chart of revenue by weekday, Friday highest">
+          <line x1="20" y1="220" x2="380" y2="220" stroke="var(--line)" stroke-width="2"/>
+          <line x1="20" y1="150" x2="380" y2="150" stroke="var(--line)" stroke-dasharray="4 6"/>
+          <line x1="20" y1="80" x2="380" y2="80" stroke="var(--line)" stroke-dasharray="4 6"/>
+          <rect x="34" y="94" width="36" height="126" rx="3" fill="var(--accent)" opacity="0.55"/>
+          <rect x="82" y="86" width="36" height="134" rx="3" fill="var(--accent)" opacity="0.55"/>
+          <rect x="130" y="68" width="36" height="152" rx="3" fill="var(--accent)" opacity="0.55"/>
+          <rect x="178" y="82" width="36" height="138" rx="3" fill="var(--accent)" opacity="0.55"/>
+          <rect x="226" y="40" width="36" height="180" rx="3" fill="var(--warm)"/>
+          <rect x="274" y="76" width="36" height="144" rx="3" fill="var(--accent)" opacity="0.55"/>
+          <rect x="322" y="100" width="36" height="120" rx="3" fill="var(--accent)" opacity="0.55"/>
+          <g font-family="Inter, sans-serif" font-size="11" fill="var(--muted)" text-anchor="middle">
+            <text x="52" y="238">Sun</text><text x="100" y="238">Mon</text><text x="148" y="238">Tue</text><text x="196" y="238">Wed</text>
+            <text x="244" y="238" font-weight="600" fill="var(--fg)">Fri</text><text x="292" y="238">Thu</text><text x="340" y="238">Sat</text>
+          </g>
+        </svg>
+        <figcaption>Illustration of the weekday pattern. Friday is the highest-revenue day; exact values are in the repository.</figcaption>
+      </figure>
+    </article>
+
+    <article class="case">
+      <div>
+        <span class="label">Logistics · Power BI</span>
+        <h3>Fleet Management Dashboard</h3>
+        <p class="lede">A three-page Power BI report on revenue, costs, driver performance and truck utilization, built to support decisions in logistics and fleet operations.</p>
+        <div class="meta">
+          <span class="chip">Power BI</span><span class="chip">Power Query</span><span class="chip">DAX</span><span class="chip">Star schema</span><span class="chip">SQL</span>
+        </div>
+        <div class="kpis">
+          <div class="kpi"><b>$485M</b><span>Net revenue</span></div>
+          <div class="kpi"><b>92K</b><span>Orders</span></div>
+          <div class="kpi"><b>664K</b><span>Tons moved</span></div>
+          <div class="kpi"><b>456K</b><span>Km traveled</span></div>
+        </div>
+        <h4>Dashboard pages</h4>
+        <ul>
+          <li><b>Revenue and orders.</b> Monthly trends show seasonal peaks from February to June, with breakdowns by truck type, trailer type and state.</li>
+          <li><b>Cost analysis.</b> Total cost is $1.42M ($969K fixed, $448K variable), or $2.13 per ton and $3.10 per km. A scatter view relates distance to fuel and maintenance cost.</li>
+          <li><b>Drivers and trucks.</b> Per-driver tracking of km, liters, fuel efficiency (km/L), fuel cost and maintenance cost, to spot efficient drivers and high-maintenance trucks.</li>
+        </ul>
+        <h4>Method</h4>
+        <ul>
+          <li>Power Query cleaning: removed duplicates and nulls, standardized names, fixed data types, handled missing truck usage and cost entries.</li>
+          <li>Star schema model and DAX measures for net revenue, year-over-year variance, fixed and variable cost, cost per km and per ton, and fuel efficiency.</li>
+        </ul>
+        <a class="btn" href="https://github.com/BassantSabra/Fleet-Management-Analysis" target="_blank" rel="noopener">View on GitHub</a>
+      </div>
+      <figure class="cover" aria-label="Chart illustration">
+        <svg viewBox="0 0 400 260" role="img" aria-label="Stacked bar showing fixed and variable cost split">
+          <text x="20" y="30" font-family="Inter, sans-serif" font-size="12" fill="var(--muted)">Total cost $1.42M</text>
+          <rect x="20" y="44" width="360" height="40" rx="4" fill="var(--accent)" opacity="0.55"/>
+          <rect x="20" y="44" width="246" height="40" rx="4" fill="var(--accent)"/>
+          <text x="32" y="69" font-family="Inter, sans-serif" font-size="12" fill="var(--bg)" font-weight="600">Fixed $969K</text>
+          <text x="278" y="69" font-family="Inter, sans-serif" font-size="12" fill="var(--fg)" font-weight="600">Variable $448K</text>
+          <text x="20" y="130" font-family="Inter, sans-serif" font-size="12" fill="var(--muted)">Cost efficiency</text>
+          <rect x="20" y="144" width="170" height="64" rx="8" fill="var(--bg)" stroke="var(--line)"/>
+          <rect x="210" y="144" width="170" height="64" rx="8" fill="var(--bg)" stroke="var(--line)"/>
+          <text x="34" y="174" font-family="Space Grotesk, sans-serif" font-size="22" fill="var(--fg)" font-weight="600">$2.13</text>
+          <text x="34" y="196" font-family="Inter, sans-serif" font-size="11" fill="var(--muted)">per ton</text>
+          <text x="224" y="174" font-family="Space Grotesk, sans-serif" font-size="22" fill="var(--fg)" font-weight="600">$3.10</text>
+          <text x="224" y="196" font-family="Inter, sans-serif" font-size="11" fill="var(--muted)">per km traveled</text>
+        </svg>
+        <figcaption>Cost split and unit costs from the Cost Analysis page.</figcaption>
+      </figure>
+    </article>
+  </section>
+
+  <section id="more-work">
+    <div class="sec-head"><h2>More work</h2><span class="label">4 projects</span></div>
+    <div class="grid">
+
+      <article class="card">
+        <div class="thumb" aria-hidden="true"><svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice"><rect x="40" y="110" width="32" height="60" fill="var(--accent)" opacity="0.5"/><rect x="88" y="80" width="32" height="90" fill="var(--accent)" opacity="0.7"/><rect x="136" y="60" width="32" height="110" fill="var(--accent)"/><rect x="184" y="90" width="32" height="80" fill="var(--accent)" opacity="0.7"/><rect x="232" y="50" width="32" height="120" fill="var(--warm)"/></svg></div>
+        <div class="body">
+          <span class="label">Sales, customers and returns</span>
+          <h3>Adventure Works Sales, Customer and Return Performance</h3>
+          <p>Analysis of sales, customer and return performance for the Adventure Works dataset.</p>
+          <div class="foot"><span>Updated Sep 2025</span><a class="view" href="https://github.com/BassantSabra/Adventure-Work-sales-and-Customer-and-Return-performance-" target="_blank" rel="noopener">GitHub</a></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="thumb" aria-hidden="true"><svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice"><rect x="30" y="40" width="260" height="22" fill="var(--accent)" opacity="0.4"/><rect x="30" y="76" width="200" height="22" fill="var(--accent)" opacity="0.6"/><rect x="30" y="112" width="150" height="22" fill="var(--accent)" opacity="0.8"/><rect x="30" y="148" width="110" height="22" fill="var(--warm)"/></svg></div>
+        <div class="body">
+          <span class="label">Retail · Excel Pivot Tables</span>
+          <h3>Coca-Cola USA Retailers Sales Analysis</h3>
+          <p>Retailer sales analysis for 2022–2023, built with pivot tables.</p>
+          <div class="foot"><span>Updated May 2025</span><a class="view" href="https://github.com/BassantSabra/Coca-Cola-USA-Retailers-Sales-Analysis-by-pivot-table-2022-2023-" target="_blank" rel="noopener">GitHub</a></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="thumb" aria-hidden="true"><svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice"><rect x="30" y="30" width="120" height="60" rx="6" fill="var(--accent)" opacity="0.6"/><rect x="170" y="30" width="120" height="60" rx="6" fill="var(--accent)" opacity="0.4"/><rect x="30" y="110" width="260" height="60" rx="6" fill="var(--accent)" opacity="0.8"/><circle cx="260" cy="60" r="10" fill="var(--warm)"/></svg></div>
+        <div class="body">
+          <span class="label">Orders · Excel</span>
+          <h3>Dynamic Excel Dashboard for Orders and Customers</h3>
+          <p>A dynamic Excel dashboard for tracking orders and customers.</p>
+          <div class="foot"><span>Updated May 2025</span><a class="view" href="https://github.com/BassantSabra/Dynamic-Excel-Dashboard-for-tracking-orders-and-customers-" target="_blank" rel="noopener">GitHub</a></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="thumb" aria-hidden="true"><svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice"><polyline points="30,150 90,120 150,130 210,80 290,50" fill="none" stroke="var(--accent)" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="290" cy="50" r="8" fill="var(--warm)"/></svg></div>
+        <div class="body">
+          <span class="label">Sales insights</span>
+          <h3>Ferns &amp; Petals (FNP) Sales Analysis</h3>
+          <p>Sales analysis and insights for the Ferns and Petals company.</p>
+          <div class="foot"><span>Updated Feb 2025</span><a class="view" href="https://github.com/BassantSabra/Sales-Analysis-Insights-for-Ferns-and-Petals-FNP-Company" target="_blank" rel="noopener">GitHub</a></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <footer>
+    <span>Bassant Sabra · Data Analyst</span>
+    <a href="https://github.com/BassantSabra" target="_blank" rel="noopener">github.com/BassantSabra</a>
+  </footer>
+</div>
+</body>
+</html>
